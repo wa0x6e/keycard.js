@@ -18,7 +18,7 @@ jobs:
     steps:
       - env:
           OUTPUT1: ${{needs.bump-version.outputs.tag}}
-        run: echo "$OUTPUT1"
+        run: echo "$OUTPUT1 $GITHUB_OUTPUT"
 
 
 
