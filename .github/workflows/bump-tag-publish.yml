@@ -14,6 +14,8 @@ jobs:
     uses: snapshot-labs/actions/.github/workflows/create-github-release.yml@add-create-release-workflow
     needs: bump-version
     secrets: inherit
+    with:
+      tag_name: $NEW_TAG
 
   publish-npm:
     uses: snapshot-labs/actions/.github/workflows/publish-npm.yml@main
