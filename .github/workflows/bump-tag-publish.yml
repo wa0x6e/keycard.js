@@ -16,10 +16,10 @@ jobs:
     name: output
 
     steps:
-      - name: echo
-        run: echo ${{ toJSON(needs.bump-version.version-bump) }}
       - name: echo2
         run: echo "$GITHUB_CONTEXT"
+      - name: echo
+        run: echo ${{ toJSON(needs.bump-version.version-bump) }}
 
 
   # create-github-release:
