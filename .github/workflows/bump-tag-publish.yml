@@ -12,8 +12,10 @@ jobs:
 
   create-github-release:
     uses: snapshot-labs/actions/.github/workflows/create-github-release.yml@add-create-release-workflow
+    needs: bump-version
     secrets: inherit
 
   publish-npm:
     uses: snapshot-labs/actions/.github/workflows/publish-npm.yml@main
     secrets: inherit
+    needs: [bump-version, create-github-release]
