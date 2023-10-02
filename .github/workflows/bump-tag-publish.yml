@@ -15,7 +15,7 @@ jobs:
     needs: bump-version
     secrets: inherit
     with:
-      tag_name: ${{ jobs.bump-version.outputs.newTag }}
+      tag_name: ${{ needs.bump-version.outputs.newTag }}
 
   publish-npm:
     uses: snapshot-labs/actions/.github/workflows/publish-npm.yml@main
