@@ -12,7 +12,7 @@ jobs:
 
   create-github-release:
     uses: snapshot-labs/actions/.github/workflows/create-github-release.yml@add-create-release-workflow
-    if: needs.bump-version.outputs.tag != ''
+    if: startsWith(needs.bump-version.outputs.tag, 'v')
     needs: bump-version
     secrets: inherit
     with:
@@ -20,6 +20,6 @@ jobs:
 
   publish-npm:
     uses: snapshot-labs/actions/.github/workflows/publish-npm.yml@main
-    if: needs.bump-version.outputs.tag != ''
+    if: startsWith(needs.bump-version.outputs.tag, 'v')
     secrets: inherit
     needs: [bump-version, create-github-release]
