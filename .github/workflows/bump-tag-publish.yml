@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: echo
-        run: echo ${{ toJSON(needs.bump-version) }}
+        run: echo ${{ toJSON(needs.bump-version.version-bump) }}
       - name: echo2
         run: echo "$GITHUB_CONTEXT"
 
