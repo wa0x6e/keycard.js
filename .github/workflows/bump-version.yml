@@ -1,6 +1,9 @@
-name: Lint
+name: Bump version
 
-on: [push]
+on:
+  push:
+    branches:
+      - 'master'
 
 jobs:
   lint:
