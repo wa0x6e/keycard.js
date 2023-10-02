@@ -10,14 +10,24 @@ jobs:
     uses: snapshot-labs/actions/.github/workflows/bump-version.yml@inject-dotenv-content
     secrets: inherit
 
-  create-github-release:
-    uses: snapshot-labs/actions/.github/workflows/create-github-release.yml@add-create-release-workflow
+  echo-newtag:
     needs: bump-version
-    secrets: inherit
-    with:
-      tag_name: ${{ needs.bump-version.outputs.newTag }}
+    runs-on: ubuntu-latest
+    name: output
 
-  publish-npm:
-    uses: snapshot-labs/actions/.github/workflows/publish-npm.yml@main
-    secrets: inherit
-    needs: [bump-version, create-github-release]
+    steps:
+      - name: echo
+        run: echo ${{ needs.bump-version.outputs }}
+
+
+  # create-github-release:
+  #   uses: snapshot-labs/actions/.github/workflows/create-github-release.yml@add-create-release-workflow
+  #   needs: bump-version
+  #   secrets: inherit
+  #   with:
+  #     tag_name: ${{ needs.bump-version.outputs.newTag }}
+
+  # publish-npm:
+  #   uses: snapshot-labs/actions/.github/workflows/publish-npm.yml@main
+  #   secrets: inherit
+  #   needs: [bump-version, create-github-release]
