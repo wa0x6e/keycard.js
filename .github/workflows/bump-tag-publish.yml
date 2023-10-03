@@ -1,4 +1,4 @@
-name: Bump, tag and publish to npm
+name: Release
 
 on:
   push:
@@ -6,20 +6,6 @@ on:
       - 'master'
 
 jobs:
-  bump-version:
-    uses: snapshot-labs/actions/.github/workflows/bump-version.yml@main
+  release:
+    uses: snapshot-labs/actions/.github/workflows/release.yml@add-complete-release-workflow
     secrets: inherit
-
-  create-github-release:
-    uses: snapshot-labs/actions/.github/workflows/create-github-release.yml@main
-    if: startsWith(needs.bump-version.outputs.tag, 'v')
-    needs: bump-version
-    secrets: inherit
-    with:
-      tag_name: ${{ needs.bump-version.outputs.tag }}
-
-  publish-npm:
-    uses: snapshot-labs/actions/.github/workflows/publish-npm.yml@main
-    if: startsWith(needs.bump-version.outputs.tag, 'v')
-    secrets: inherit
-    needs: [bump-version, create-github-release]
